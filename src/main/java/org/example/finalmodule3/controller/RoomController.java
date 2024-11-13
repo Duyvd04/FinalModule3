@@ -22,7 +22,7 @@ public class RoomController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        String url = req.getPathInfo();//: Lấy thông tin phần đường dẫn sau tên servlet trong URL
+        String url = req.getPathInfo();
         if ((url == null)) {
             url = "/";
         }
@@ -37,8 +37,11 @@ public class RoomController extends BaseController {
                 case "/delete":
                     roomService.deleteUser(req, resp);
                     break;
+                case"/find":
+                    roomService.Search(req, resp);
+                    break;
 //                case "/update":
-//                    adminService.showPageUpdateUser(req, resp);
+//                    roomService.showPageUpdateUser(req, resp);
 //                    break;
                 default:
                     pageNotFound(req, resp);
@@ -61,7 +64,7 @@ public class RoomController extends BaseController {
 //            url = "/";
 //        }
 //        try {
-//            switch (url){
+//            switch (url) {
 //                case "/create":
 //                    adminService.createUser(req, resp);
 //                    break;
@@ -69,12 +72,11 @@ public class RoomController extends BaseController {
 //                    adminService.updateUser(req, resp);
 //                    break;
 //                default:
-//                    pageNotFound(req, resp);
+////                    pageNotFound(req, resp);
 //                    break;
 //            }
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //            throw new ServletException(e);
 //        }
-//    }
-//}​21:23/-strong/-heart:>:o:-((:-h Xem trước khi gửiThả Files vào đây để xem lại trước khi gửi
+

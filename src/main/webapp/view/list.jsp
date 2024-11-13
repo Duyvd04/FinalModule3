@@ -16,7 +16,7 @@
 
     <!-- Search Form -->
     <form class="d-flex mb-4" action="${pageContext.request.contextPath}/dd/find" method="get">
-        <input class="form-control me-2" type="search" name="query" placeholder="Tìm kiếm người dùng" aria-label="Search" value="${param.query}">
+        <input class="form-control me-2" type="search" name="keyword" placeholder="Tìm kiếm" aria-label="Searchgit ">
         <button class="btn btn-outline-primary" type="submit">Tìm kiếm</button>
     </form>
 

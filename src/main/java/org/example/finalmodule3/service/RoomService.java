@@ -24,19 +24,19 @@ public class RoomService {
     public void showPageUserList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         // Show list of users
         ResultSet data = roomModel.getAllUser();
-        List<RentalRoom> rentalrooms= new ArrayList<>();
+        List<RentalRoom> rentalrooms = new ArrayList<>();
         while (data.next()) {
-            int roomID=data.getInt("roomID");
-            String tenantName=data.getString("tenantName");
-            String phoneNumber=data.getString("phoneNumber");
-            Date rentalStartDate=data.getDate("rentalStartDate");
-            String   paymentMethodName=data.getString("paymentMethodName");
-            String notes=data.getString("notes");
-            RentalRoom rentalRoom= new RentalRoom(roomID,tenantName, phoneNumber, rentalStartDate, paymentMethodName, notes);
+            int roomID = data.getInt("roomID");
+            String tenantName = data.getString("tenantName");
+            String phoneNumber = data.getString("phoneNumber");
+            Date rentalStartDate = data.getDate("rentalStartDate");
+            String paymentMethodName = data.getString("paymentMethodName");
+            String notes = data.getString("notes");
+            RentalRoom rentalRoom = new RentalRoom(roomID, tenantName, phoneNumber, rentalStartDate, paymentMethodName, notes);
             rentalrooms.add(rentalRoom);
 
         }
-        request.setAttribute("data",rentalrooms);//// Lưu danh sách người dùng vào request
+        request.setAttribute("data", rentalrooms);//// Lưu danh sách người dùng vào request
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/list.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -51,7 +51,8 @@ public class RoomService {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/create.jsp");
         requestDispatcher.forward(request, response);
     }
-//
+
+    //
 //    public void createUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 //        // Get user Data from request
 //        int id = Integer.parseInt(request.getParameter("id"));
@@ -97,23 +98,23 @@ public class RoomService {
 //        // Chuyển hướng về trang danh sách người dùng
 //        response.sendRedirect(request.getContextPath()+"/admin/users");
 //    }
-//    public void Search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-//        // Lấy từ khóa tìm kiếm từ request
-//        String keyword = request.getParameter("keyword");
-//
-//        // Lấy danh sách sản phẩm dựa trên từ khóa tìm kiếm
-//        List<User> users = userModel.searchUsers(keyword);
-//        System.out.println(users.size());
-//        // Đặt danh sách sản phẩm vào thuộc tính request
-//        request.setAttribute("data", users);
-//
-//        // Forward đến trang showList.jsp
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/list.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
-//}
+    public void Search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        // Get the keyword from the request
+        String keyword = request.getParameter("keyword");
 
+        // Get the list of rooms based on the search keyword
+        List<RentalRoom> rooms = roomModel.searchRoom(keyword);
 
+        // Set the search result to request
+        request.setAttribute("data", rooms);
 
-
+        // Forward to the list.jsp to display the results
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/list.jsp");
+        requestDispatcher.forward(request, response);
+    }
 }
+
+
+
+
+

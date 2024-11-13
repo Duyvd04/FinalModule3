@@ -5,6 +5,7 @@ import org.example.finalmodule3.empty.RentalRoom;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 public class RoomModel {
     private final List<RentalRoom> list;
@@ -54,17 +55,17 @@ public class RoomModel {
 //        statement.execute();
 //
 //    }
-    public ResultSet findUserByID(int roomID) throws SQLException {
-        String sql = "SELECT * FROM student WHERE roomID = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        // Thay thế tham số dấu ? trong câu truy vấn bằng giá trị id
-        statement.setInt(1, roomID);
-
-        // Thực thi truy vấn và trả về kết quả
-        ResultSet resultSet = statement.executeQuery();
-        return resultSet;
-    }
+//    public ResultSet findUserByID(int roomID) throws SQLException {
+//        String sql = "SELECT * FROM student WHERE roomID = ?";
+//        PreparedStatement statement = connection.prepareStatement(sql);
+//
+//        // Thay thế tham số dấu ? trong câu truy vấn bằng giá trị id
+//        statement.setInt(1, roomID);
+//
+//        // Thực thi truy vấn và trả về kết quả
+//        ResultSet resultSet = statement.executeQuery();
+//        return resultSet;
+//    }
 
 //    public void updateUser(User user) throws SQLException {
 //        String sql="UPDATE student SET name=?,email=?,class_id=? WHERE id=?";
@@ -78,31 +79,41 @@ public class RoomModel {
 //        //thực thi câu lệnh
 //        statement.execute();
 //    }
-//    public List<User> searchUsers(String keyword) throws SQLException {
-//        String sql = "SELECT * FROM Student WHERE name LIKE ? OR email LIKE ?";
-//        List<User> users = new ArrayList<>();
-//
-//        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-//            // Set the keyword for both the name and email fields
-//            String searchKeyword = "%" + keyword + "%";
-//            statement.setString(1, searchKeyword);
-//            statement.setString(2, searchKeyword);
-//
-//            try (ResultSet resultSet = statement.executeQuery()) {
-//                while (resultSet.next()) {
-//                    int id = resultSet.getInt("id");
-//                    String name = resultSet.getString("name");
-//                    String email = resultSet.getString("email");
-//                    int class_id = resultSet.getInt("class_id");
-//                    User user = new User(id, name, email, class_id);
-//                    users.add(user);
-//                }
-//            }
-//        }
-//        return users;
-//    }
+public List<RentalRoom> searchRoom(String keyword) throws SQLException {
+    // SQL query to search for rooms by tenant name or phone number
+    String sql = "SELECT r.roomID, r.tenantName, r.phoneNumber, r.rentalStartDate, p.paymentMethodName, r.notes " +
+            "FROM RentalRoom r " +
+            "JOIN PaymentMethod p ON r.paymentMethodID = p.paymentMethodID " +
+            "WHERE r.tenantName LIKE ? OR r.phoneNumber LIKE ?";
+
+    List<RentalRoom> rooms = new ArrayList<>();
+
+    try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        String searchKeyword = "%" + keyword + "%";
+        statement.setString(1, searchKeyword);
+        statement.setString(2, searchKeyword);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int roomID = resultSet.getInt("roomID");
+                String tenantName = resultSet.getString("tenantName");
+                String phoneNumber = resultSet.getString("phoneNumber");
+                Date rentalStartDate = resultSet.getDate("rentalStartDate");
+                String paymentMethod = resultSet.getString("paymentMethodName");
+                String notes = resultSet.getString("notes");
+                RentalRoom room = new RentalRoom(roomID, tenantName, phoneNumber, rentalStartDate, paymentMethod, notes);
+                rooms.add(room);
+            }
+        }
+    }
+    return rooms;
+}
+
+
+}
+
 
 
 //}
 
-}
+
