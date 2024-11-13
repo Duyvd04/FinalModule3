@@ -37,7 +37,7 @@ public class RoomController extends BaseController {
                 case "/delete":
                     roomService.deleteUser(req, resp);
                     break;
-                case"/find":
+                case "/find":
                     roomService.Search(req, resp);
                     break;
 //                case "/update":
@@ -53,7 +53,7 @@ public class RoomController extends BaseController {
 
         }
     }
-}
+//
 //    @Override
 //    // Servlet này chịu trách nhiệm xử lý các yêu cầu HTTP POST từ phía client.
 //    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -66,10 +66,10 @@ public class RoomController extends BaseController {
 //        try {
 //            switch (url) {
 //                case "/create":
-//                    adminService.createUser(req, resp);
+//                    roomService.createUser(req, resp);
 //                    break;
 //                case "/update":
-//                    adminService.updateUser(req, resp);
+//                    roomService.updateUser(req, resp);
 //                    break;
 //                default:
 ////                    pageNotFound(req, resp);
@@ -79,4 +79,6 @@ public class RoomController extends BaseController {
 //            e.printStackTrace();
 //            throw new ServletException(e);
 //        }
-
+//
+//    }
+}
