@@ -58,7 +58,6 @@
     </table>
 </div>
 
-<!-- Add User Modal -->
 <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -70,11 +69,15 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="tenantName" class="form-label">Tên người thuê trọ</label>
-                        <input type="text" class="form-control" id="tenantName" name="tenantName" required>
+                        <input type="text" class="form-control" id="tenantName" name="tenantName" required
+                               minlength="5" maxlength="50"
+                               pattern="^[A-Za-zÀ-ỹ\s]{5,50}$"
+                               title="Tên người thuê trọ không được chứa số, kí tự đặc biệt và phải có độ dài từ 5 đến 50 kí tự.">
                     </div>
+
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Số điện thoại</label>
-                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" maxlength="10" required oninput="validatePhoneNumber(this)">
                     </div>
                     <div class="mb-3">
                         <label for="rentalStartDate" class="form-label">Ngày bắt đầu thuê</label>
@@ -92,7 +95,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="notes" class="form-label">Ghi chú</label>
-                        <textarea class="form-control" id="notes" name="notes"></textarea>
+                        <textarea class="form-control" id="notes" name="notes" maxlength="200"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -105,5 +108,10 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function validatePhoneNumber(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
+</script>
 </body>
 </html>

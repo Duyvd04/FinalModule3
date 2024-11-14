@@ -115,7 +115,6 @@ public class RoomService {
         response.sendRedirect(request.getContextPath()+"/dd");
     }
     public void Search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        // Get the keyword from the request
         String keyword = request.getParameter("keyword");
 
         // Get the list of rooms based on the search keyword

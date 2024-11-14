@@ -128,6 +128,3 @@ public List<RentalRoom> searchRoom(String keyword) throws SQLException {
 
 
 
-//}
-
-
