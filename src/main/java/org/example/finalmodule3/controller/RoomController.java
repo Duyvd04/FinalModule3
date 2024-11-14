@@ -32,17 +32,17 @@ public class RoomController extends BaseController {
                     roomService.showPageUserList(req, resp);
                     break;
                 case "/create":
-                    roomService.showPageAddUser(req, resp);
+                    roomService.showPageAddRoom(req, resp);
                     break;
                 case "/delete":
-                    roomService.deleteUser(req, resp);
+                    roomService.deleteRoom(req, resp);
                     break;
                 case "/find":
                     roomService.Search(req, resp);
                     break;
-//                case "/update":
-//                    roomService.showPageUpdateUser(req, resp);
-//                    break;
+                case "/update":
+                    roomService.showPageUpdateRoom(req, resp);
+                    break;
                 default:
                     pageNotFound(req, resp);
                     break;
@@ -53,32 +53,32 @@ public class RoomController extends BaseController {
 
         }
     }
-//
-//    @Override
-//    // Servlet này chịu trách nhiệm xử lý các yêu cầu HTTP POST từ phía client.
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        // Handle POST requests here
-//        req.setCharacterEncoding("UTF-8");
-//        String url = req.getPathInfo();
-//        if ((url == null)) {
-//            url = "/";
-//        }
-//        try {
-//            switch (url) {
-//                case "/create":
-//                    roomService.createUser(req, resp);
-//                    break;
-//                case "/update":
-//                    roomService.updateUser(req, resp);
-//                    break;
-//                default:
-////                    pageNotFound(req, resp);
-//                    break;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            throw new ServletException(e);
-//        }
-//
-//    }
+
+    @Override
+    // Servlet này chịu trách nhiệm xử lý các yêu cầu HTTP POST từ phía client.
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Handle POST requests here
+        req.setCharacterEncoding("UTF-8");
+        String url = req.getPathInfo();
+        if ((url == null)) {
+            url = "/";
+        }
+        try {
+            switch (url) {
+                case "/create":
+                    roomService.createRoom(req, resp);
+                    break;
+                case "/update":
+                    roomService.updateRoom(req, resp);
+                    break;
+                default:
+                    pageNotFound(req, resp);
+                    break;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new ServletException(e);
+        }
+
+    }
 }

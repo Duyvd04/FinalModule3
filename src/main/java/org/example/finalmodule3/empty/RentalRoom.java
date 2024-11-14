@@ -1,18 +1,23 @@
 package org.example.finalmodule3.empty;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class RentalRoom {
+
     private int roomID;
     private String tenantName;
     private String phoneNumber;
-    private Date rentalStartDate;
+    private LocalDate rentalStartDate;
     private String paymentMethodName;
+    int paymentMethodID;
+
     private String notes;
+
 
     public RentalRoom() {
     }
 
-    public RentalRoom(int roomID, String tenantName, String phoneNumber, Date rentalStartDate, String paymentMethodName, String notes) {
+    public RentalRoom(int roomID, String tenantName, String phoneNumber, LocalDate rentalStartDate, String paymentMethodName, String notes) {
         this.roomID = roomID;
         this.tenantName = tenantName;
         this.phoneNumber = phoneNumber;
@@ -20,6 +25,24 @@ public class RentalRoom {
         this.paymentMethodName = paymentMethodName;
         this.notes = notes;
     }
+
+    public RentalRoom(String tenantName, String phoneNumber, LocalDate rentalStartDate, int paymentMethodID, String notes) {
+        this.tenantName = tenantName;
+        this.phoneNumber = phoneNumber;
+        this.rentalStartDate = rentalStartDate;
+        this.paymentMethodID = paymentMethodID;
+        this.notes = notes;
+    }
+
+    public RentalRoom(int roomID, String tenantName, String phoneNumber, LocalDate rentalStartDate, int paymentMethodID, String notes) {
+        this.roomID = roomID;
+        this.tenantName = tenantName;
+        this.phoneNumber = phoneNumber;
+        this.rentalStartDate = rentalStartDate;
+        this.paymentMethodID = paymentMethodID;
+        this.notes = notes;
+    }
+
 
     public int getRoomID() {
         return roomID;
@@ -45,11 +68,11 @@ public class RentalRoom {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getRentalStartDate() {
+    public LocalDate getRentalStartDate() {
         return rentalStartDate;
     }
 
-    public void setRentalStartDate(Date rentalStartDate) {
+    public void setRentalStartDate(LocalDate rentalStartDate) {
         this.rentalStartDate = rentalStartDate;
     }
 
@@ -69,4 +92,11 @@ public class RentalRoom {
         this.notes = notes;
     }
 
+    public int getPaymentMethodID() {
+        return paymentMethodID;
+    }
+
+    public void setPaymentMethodID(int paymentMethodID) {
+        this.paymentMethodID = paymentMethodID;
+    }
 }
