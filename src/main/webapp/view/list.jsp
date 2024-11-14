@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách Người dùng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../view/styles.css">
 </head>
 <body>
 <div class="container mt-5">
@@ -24,7 +24,7 @@
     </form>
 
     <div class="alert alert-info">
-        <strong>Tổng số người dùng:</strong> <c:out value="${data.size()}"/>
+        Tổng số người dùng: <c:out value="${data.size()}"/>
     </div>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
